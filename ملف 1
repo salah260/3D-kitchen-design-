@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصمم المطابخ ثلاثي الأبعاد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- شريط الأدوات العلوي -->
+        <div class="toolbar">
+            <button id="newDesign" class="tool-button">
+                <i class="fas fa-file"></i> جديد
+            </button>
+            <button id="saveDesign" class="tool-button">
+                <i class="fas fa-save"></i> حفظ
+            </button>
+            <button id="loadDesign" class="tool-button">
+                <i class="fas fa-folder-open"></i> فتح
+            </button>
+            <div class="tool-separator"></div>
+            <button id="helpButton" class="tool-button">
+                <i class="fas fa-question-circle"></i> مساعدة
+            </button>
+        </div>
+
+        <!-- الواجهة الرئيسية -->
+        <div class="main-ui">
+            <!-- القائمة الجانبية -->
+            <div class="sidebar">
+                <div class="category">
+                    <h3><i class="fas fa-oven"></i> الأجهزة</h3>
+                    <div class="items-grid">
+                        <div class="item" data-model="models/oven.gltf">
+                            <img src="assets/icons/oven.png" alt="فرن">
+                            <span>فرن</span>
+                        </div>
+                        <div class="item" data-model="models/fridge.gltf">
+                            <img src="assets/icons/fridge.png" alt="ثلاجة">
+                            <span>ثلاجة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category">
+                    <h3><i class="fas fa-cabinet"></i> الخزانات</h3>
+                    <div class="items-grid">
+                        <div class="item" data-model="models/cabinet.gltf">
+                            <img src="assets/icons/cabinet.png" alt="خزانة">
+                            <span>خزانة علوية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منطقة العرض -->
+            <div id="canvas-container"></div>
+
+            <!-- لوحة التحكم -->
+            <div id="control-panel" class="control-panel">
+                <h3><i class="fas fa-sliders-h"></i> إعدادات العنصر</h3>
+                <div id="gui-container"></div>
+            </div>
+        </div>
+
+        <!-- حالة التطبيق -->
+        <div class="status-bar">
+            <span id="status-message">جاهز للبدء</span>
+        </div>
+    </div>
+
+    <!-- نافذة المساعدة -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-question-circle"></i> دليل الاستخدام</h2>
+            <div class="help-content">
+                <h3>كيفية الاستخدام:</h3>
+                <ol>
+                    <li>اسحب العنصر من القائمة الجانبية وأسقطه في منطقة التصميم</li>
+                    <li>انقر على العنصر لتحديده وتعديل خصائصه من لوحة التحكم</li>
+                    <li>استخدم زر الفأرة الأيسر لتدوير المشهد</li>
+                    <li>استخدم زر الفأرة الأيمن لتحريك المشهد</li>
